@@ -1234,6 +1234,204 @@ body {
   color: var(--gray);
 }
 
+.weapons-showcase {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 32px;
+  align-items: start;
+}
+
+.weapons-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.weapon-card {
+  padding: 20px;
+  border: 1px solid rgba(255, 26, 26, 0.15);
+  background: rgba(8, 8, 8, 0.8);
+  cursor: pointer;
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  outline: none;
+}
+
+.weapon-card:hover,
+.weapon-card--active {
+  border-color: rgba(255, 26, 26, 0.5);
+  box-shadow: 0 0 30px rgba(255, 26, 26, 0.1);
+}
+
+.weapon-card--active {
+  background:
+    radial-gradient(ellipse at top, rgba(255, 26, 26, 0.1) 0%, transparent 60%),
+    rgba(8, 8, 8, 0.95);
+  transform: translateY(-2px);
+}
+
+.weapon-card-wire {
+  color: var(--red);
+  opacity: 0.5;
+  margin-bottom: 12px;
+}
+
+.weapon-card-wire svg {
+  width: 100%;
+  max-width: 140px;
+  height: auto;
+}
+
+.weapon-card-code {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.15em;
+  color: var(--gray);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.weapon-card-name {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 2px;
+}
+
+.weapon-card-type {
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.1em;
+  color: var(--red);
+  display: block;
+  margin-bottom: 16px;
+}
+
+.weapon-stat {
+  margin-bottom: 10px;
+}
+
+.weapon-stat-head {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  color: var(--gray);
+  margin-bottom: 4px;
+}
+
+.weapon-stat-head strong {
+  color: #fff;
+}
+
+.weapon-stat-track {
+  height: 3px;
+  background: #1a1a1a;
+  overflow: hidden;
+}
+
+.weapon-stat-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--red-dim), var(--red));
+  box-shadow: 0 0 8px var(--red-glow-soft);
+  transition: width 0.5s ease;
+}
+
+.weapon-card-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 26, 26, 0.1);
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  color: var(--gray);
+}
+
+.weapon-card-meta strong {
+  color: var(--red);
+}
+
+.weapon-detail {
+  position: sticky;
+  top: 100px;
+  padding: 28px;
+  border: 1px solid rgba(255, 26, 26, 0.35);
+  background: rgba(5, 5, 5, 0.92);
+  backdrop-filter: blur(10px);
+}
+
+.weapon-detail-label {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  color: var(--red);
+  display: block;
+  margin-bottom: 12px;
+}
+
+.weapon-detail-code {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.weapon-detail-name {
+  font-size: 0.9rem;
+  color: var(--gray-light);
+  margin-bottom: 16px;
+}
+
+.weapon-detail-desc {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--gray);
+  margin-bottom: 24px;
+}
+
+.weapon-attachments {
+  margin-bottom: 24px;
+}
+
+.weapon-attachments-label {
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.15em;
+  color: var(--gray);
+  display: block;
+  margin-bottom: 10px;
+}
+
+.attachment-slots {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.attachment-slot {
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.1em;
+  padding: 10px;
+  text-align: center;
+  border: 1px dashed rgba(255, 26, 26, 0.2);
+  color: var(--gray);
+}
+
+.attachment-slot--filled {
+  border-style: solid;
+  border-color: rgba(255, 26, 26, 0.4);
+  color: var(--red);
+  background: rgba(255, 26, 26, 0.06);
+}
+
+.weapon-equip {
+  width: 100%;
+  justify-content: center;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1100px) {
   .hero-grid {
