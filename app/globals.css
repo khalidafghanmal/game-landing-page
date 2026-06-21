@@ -1095,6 +1095,145 @@ body {
   color: var(--red);
 }
 
+/* ===== WEAPONS SECTION ===== */
+.weapons-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding: 100px var(--page-gutter) 80px;
+  padding-left: calc(var(--page-gutter) + 48px);
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 80% 20%, rgba(255, 26, 26, 0.08) 0%, transparent 45%),
+    linear-gradient(180deg, #030303 0%, #060606 50%, #030303 100%);
+}
+
+.weapons-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.weapons-beam {
+  position: absolute;
+  width: 1px;
+  height: 120%;
+  background: linear-gradient(180deg, transparent, rgba(255, 26, 26, 0.25), transparent);
+  top: -10%;
+  opacity: 0.4;
+}
+
+.weapons-beam--1 { left: 25%; transform: rotate(8deg); }
+.weapons-beam--2 { right: 18%; transform: rotate(-5deg); opacity: 0.25; }
+
+.weapons-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.weapons-header {
+  max-width: 780px;
+  margin-bottom: 56px;
+}
+
+.weapons-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  color: var(--red);
+  display: block;
+  margin-bottom: 16px;
+}
+
+.weapons-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1.05;
+  color: #fff;
+  margin-bottom: 24px;
+}
+
+.weapons-title span {
+  display: block;
+}
+
+.weapons-title-accent {
+  color: var(--red);
+  text-shadow: 0 0 50px var(--red-glow);
+}
+
+.weapons-lead {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  color: #ddd;
+  margin-bottom: 16px;
+  max-width: 640px;
+}
+
+.weapons-desc {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--gray);
+  max-width: 600px;
+}
+
+.weapons-modular {
+  margin-top: 64px;
+  padding-top: 48px;
+  border-top: 1px solid rgba(255, 26, 26, 0.2);
+  max-width: 900px;
+}
+
+.weapons-modular-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: #fff;
+  margin-bottom: 16px;
+}
+
+.weapons-modular-desc {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--gray);
+  margin-bottom: 32px;
+  max-width: 640px;
+}
+
+.weapons-modular-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.weapons-modular-list li {
+  padding: 20px;
+  border: 1px solid rgba(255, 26, 26, 0.2);
+  background: rgba(255, 26, 26, 0.04);
+  text-align: center;
+}
+
+.weapons-modular-list strong {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--red);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.weapons-modular-list span {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.15em;
+  color: var(--gray);
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1100px) {
   .hero-grid {
