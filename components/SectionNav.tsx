@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 const SECTIONS = [
   { id: "home", label: "Home" },
   { id: "modes", label: "Combat Protocols" },
+  { id: "weapons", label: "Arsenal Division" },
 ];
 
 const TOTAL_SLIDES = 5;
