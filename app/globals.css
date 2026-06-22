@@ -1486,6 +1486,22 @@ body {
   .weapons-row {
     grid-template-columns: 1fr;
   }
+
+  .weapons-showcase {
+    grid-template-columns: 1fr;
+  }
+
+  .weapons-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .weapon-detail {
+    position: static;
+  }
+
+  .weapons-modular-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
@@ -1506,4 +1522,6 @@ body {
   .modes-section { padding: 80px var(--page-gutter) 60px; padding-left: 48px; }
   .weapon-chip { grid-template-columns: 1fr; gap: 8px; }
   .weapon-chip-stats { text-align: left; flex-direction: row; gap: 12px; }
+  .weapons-section { padding: 80px var(--page-gutter) 60px; padding-left: 48px; }
+  .weapons-modular-list { grid-template-columns: 1fr 1fr; }
 }
