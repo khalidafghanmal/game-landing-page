@@ -1,7 +1,5 @@
 "use client";
 
-import { useState } from "react";
-
 export type WeaponData = {
   code: string;
   name: string;
