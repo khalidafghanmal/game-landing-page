@@ -1,4 +1,9 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import { gsap } from "@/lib/gsap";
 import ModeCard, { type ModeData } from "./ModeCard";
+import Reveal from "./motion/Reveal";
 
 const MODES: ModeData[] = [
   {
@@ -50,8 +55,42 @@ const WEAPONS = [
 ];
 
 export default function ModesSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const ctx = gsap.context(() => {
+      gsap.to(".modes-grid-floor", {
+        backgroundPosition: "0px 120px",
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1.5,
+        },
+      });
+
+      gsap.from(".modes-horizon", {
+        scaleX: 0,
+        opacity: 0,
+        scrollTrigger: {
+          trigger: ".modes-header",
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+        duration: 1.2,
+        ease: "power3.inOut",
+      });
+    }, section);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="modes" className="modes-section">
+    <section id="modes" className="modes-section" ref={sectionRef}>
       <div className="modes-bg" aria-hidden="true">
         <div className="modes-grid-floor" />
         <div className="modes-horizon" />
@@ -61,7 +100,7 @@ export default function ModesSection() {
       </div>
 
       <div className="modes-inner">
-        <header className="modes-header">
+        <Reveal className="modes-header">
           <span className="modes-eyebrow">02 / VOID PROTOCOLS</span>
           <h2 className="modes-title">
             <span>CHOOSE</span>
@@ -71,16 +110,16 @@ export default function ModesSection() {
             Three theaters of operation. Dynamic objectives. Adaptive enemy AI.
             Deploy where the front line demands you most.
           </p>
-        </header>
+        </Reveal>
 
         <div className="modes-layout">
           <div className="modes-grid">
-            {MODES.map((mode) => (
-              <ModeCard key={mode.id} mode={mode} />
+            {MODES.map((mode, i) => (
+              <ModeCard key={mode.id} mode={mode} index={i} />
             ))}
           </div>
 
-          <aside className="modes-intel">
+          <Reveal className="modes-intel" y={40} delay={0.2}>
             <div className="intel-panel">
               <span className="intel-label">TACTICAL BRIEFING</span>
               <div className="intel-map" aria-hidden="true">
@@ -103,10 +142,10 @@ export default function ModesSection() {
                 <li><span className="intel-time">01:08</span> Reinforcements inbound — ETA 4m</li>
               </ul>
             </div>
-          </aside>
+          </Reveal>
         </div>
 
-        <div className="modes-weapons">
+        <Reveal className="modes-weapons" childSelector=".weapon-chip" stagger={0.1} y={32}>
           <span className="modes-weapons-label">LOADOUT MATRIX</span>
           <div className="weapons-row">
             {WEAPONS.map((w) => (
@@ -128,7 +167,7 @@ export default function ModesSection() {
               </div>
             ))}
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

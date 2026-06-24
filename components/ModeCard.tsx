@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { motion } from "framer-motion";
 
 export type ModeData = {
   id: string;
@@ -13,13 +13,18 @@ export type ModeData = {
   stats: { label: string; value: string }[];
 };
 
-function DifficultyMeter({ level }: { level: number }) {
+function DifficultyMeter({ level, animate }: { level: number; animate?: boolean }) {
   return (
     <div className="mode-difficulty" aria-label={`Difficulty ${level} of 5`}>
       {Array.from({ length: 5 }, (_, i) => (
-        <span
+        <motion.span
           key={i}
           className={`mode-difficulty-bar${i < level ? " mode-difficulty-bar--on" : ""}`}
+          initial={animate ? { scaleY: 0 } : false}
+          whileInView={animate ? { scaleY: 1 } : undefined}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 + i * 0.06, duration: 0.35 }}
+          style={{ transformOrigin: "bottom" }}
         />
       ))}
     </div>
@@ -62,15 +67,25 @@ const ICON_MAP = {
   "MODE-03": "war",
 } as const;
 
-export default function ModeCard({ mode }: { mode: ModeData }) {
-  const [hovered, setHovered] = useState(false);
+export default function ModeCard({ mode, index }: { mode: ModeData; index: number }) {
   const icon = ICON_MAP[mode.id as keyof typeof ICON_MAP] ?? "solo";
 
   return (
-    <article
-      className={`mode-card${mode.featured ? " mode-card--featured" : ""}${hovered ? " mode-card--hover" : ""}`}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+    <motion.article
+      className={`mode-card${mode.featured ? " mode-card--featured" : ""}`}
+      initial={{ opacity: 0, y: 56, scale: 0.96 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{
+        duration: 0.75,
+        delay: index * 0.12,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      whileHover={{
+        y: -8,
+        boxShadow: "0 0 50px rgba(255, 26, 26, 0.18)",
+        borderColor: "rgba(255, 26, 26, 0.55)",
+      }}
     >
       <div className="mode-card-scan" aria-hidden="true" />
       <div className="mode-card-corner mode-card-corner--tl" aria-hidden="true" />
@@ -86,10 +101,18 @@ export default function ModeCard({ mode }: { mode: ModeData }) {
 
       <div className="mode-meta">
         <div className="mode-players">
-          <span className="mode-players-num">{mode.players}</span>
+          <motion.span
+            className="mode-players-num"
+            initial={{ opacity: 0, scale: 0.5 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 + index * 0.1, type: "spring", stiffness: 200 }}
+          >
+            {mode.players}
+          </motion.span>
           <span className="mode-players-label">{mode.playerLabel}</span>
         </div>
-        <DifficultyMeter level={mode.difficulty} />
+        <DifficultyMeter level={mode.difficulty} animate />
       </div>
 
       <ul className="mode-stats">
@@ -101,13 +124,16 @@ export default function ModeCard({ mode }: { mode: ModeData }) {
         ))}
       </ul>
 
-      <button type="button" className="mode-deploy btn btn--ghost">
+      <motion.button
+        type="button"
+        className="mode-deploy btn btn--ghost"
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+      >
         DEPLOY
-      </button>
+      </motion.button>
 
-      {mode.featured && (
-        <span className="mode-badge">FEATURED</span>
-      )}
-    </article>
+      {mode.featured && <span className="mode-badge">FEATURED</span>}
+    </motion.article>
   );
 }
