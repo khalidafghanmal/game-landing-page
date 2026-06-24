@@ -1,17 +1,33 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const NAV_LINKS = [
-  { href: "#", label: "HOME", active: true },
-  { href: "#", label: "GAME" },
-  { href: "#", label: "MODES" },
-  { href: "#", label: "WEAPONS" },
+  { href: "#home", label: "HOME", active: true },
+  { href: "#modes", label: "MODES" },
+  { href: "#weapons", label: "WEAPONS" },
   { href: "#", label: "MEDIA" },
   { href: "#", label: "COMMUNITY" },
 ];
 
 export default function Header() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="header">
+    <motion.header
+      className={`header${scrolled ? " header--scrolled" : ""}`}
+      initial={{ y: -80, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+    >
       <Link href="/" className="logo">
         <svg
           className="logo-icon"
@@ -34,29 +50,40 @@ export default function Header() {
       </Link>
 
       <nav className="nav">
-        {NAV_LINKS.map((link) => (
-          <Link
+        {NAV_LINKS.map((link, i) => (
+          <motion.div
             key={link.label}
-            href={link.href}
-            className={`nav-link${link.active ? " nav-link--active" : ""}`}
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 + i * 0.06, duration: 0.5 }}
           >
-            {link.active ? (
-              <>
-                <span className="nav-bracket">[</span>
-                {link.label}
-                <span className="nav-bracket">]</span>
-              </>
-            ) : (
-              link.label
-            )}
-          </Link>
+            <Link
+              href={link.href}
+              className={`nav-link${link.active ? " nav-link--active" : ""}`}
+            >
+              {link.active ? (
+                <>
+                  <span className="nav-bracket">[</span>
+                  {link.label}
+                  <span className="nav-bracket">]</span>
+                </>
+              ) : (
+                link.label
+              )}
+            </Link>
+          </motion.div>
         ))}
       </nav>
 
-      <div className="badge-pre-alpha">
+      <motion.div
+        className="badge-pre-alpha"
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.55, duration: 0.5 }}
+      >
         <span className="badge-stripe" aria-hidden="true" />
         <span>PRE-ALPHA</span>
-      </div>
-    </header>
+      </motion.div>
+    </motion.header>
   );
 }
