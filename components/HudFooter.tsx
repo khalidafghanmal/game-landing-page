@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
+import { gsap } from "@/lib/gsap";
 
 const STATS = [
   { label: "CONFLICTS", target: 1204 },
@@ -8,33 +9,40 @@ const STATS = [
   { label: "MISSIONS COMPLETED", target: 98765 },
 ];
 
-function useAnimatedCounter(target: number, duration = 2000) {
-  const [value, setValue] = useState(0);
+function StatRow({ label, target }: { label: string; target: number }) {
+  const valueRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    const start = performance.now();
+    const el = valueRef.current;
+    if (!el) return;
 
-    function tick(now: number) {
-      const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setValue(Math.floor(eased * target));
-      if (progress < 1) requestAnimationFrame(tick);
-    }
+    const counter = { val: 0 };
+    const tween = gsap.to(counter, {
+      val: target,
+      duration: 2.2,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: el,
+        start: "top 92%",
+        toggleActions: "play none none none",
+      },
+      onUpdate: () => {
+        el.textContent = Math.floor(counter.val).toLocaleString();
+      },
+    });
 
-    const frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
-  }, [target, duration]);
-
-  return value.toLocaleString();
-}
-
-function StatRow({ label, target }: { label: string; target: number }) {
-  const value = useAnimatedCounter(target);
+    return () => {
+      tween.scrollTrigger?.kill();
+      tween.kill();
+    };
+  }, [target]);
 
   return (
     <div className="stat">
       <span className="stat-label">{label}</span>
-      <span className="stat-value">{value}</span>
+      <span className="stat-value" ref={valueRef}>
+        0
+      </span>
     </div>
   );
 }
