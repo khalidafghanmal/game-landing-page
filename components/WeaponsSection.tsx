@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import WeaponCard, { WeaponDetail, type WeaponData } from "./WeaponCard";
+import Reveal from "./motion/Reveal";
+import { gsap } from "@/lib/gsap";
 
 const WEAPONS: WeaponData[] = [
   {
@@ -56,16 +58,35 @@ const WEAPONS: WeaponData[] = [
 
 export default function WeaponsSection() {
   const [selected, setSelected] = useState(0);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const ctx = gsap.context(() => {
+      gsap.to(".weapons-beam--1", {
+        y: 120,
+        scrollTrigger: { trigger: section, scrub: 1.2, start: "top bottom", end: "bottom top" },
+      });
+      gsap.to(".weapons-beam--2", {
+        y: -80,
+        scrollTrigger: { trigger: section, scrub: 1.5, start: "top bottom", end: "bottom top" },
+      });
+    }, section);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section id="weapons" className="weapons-section">
+    <section id="weapons" className="weapons-section" ref={sectionRef}>
       <div className="weapons-bg" aria-hidden="true">
         <div className="weapons-beam weapons-beam--1" />
         <div className="weapons-beam weapons-beam--2" />
       </div>
 
       <div className="weapons-inner">
-        <header className="weapons-header">
+        <Reveal className="weapons-header">
           <span className="weapons-eyebrow">03 / ARSENAL DIVISION</span>
           <h2 className="weapons-title">
             <span>FORGE YOUR</span>
@@ -81,7 +102,7 @@ export default function WeaponsSection() {
             Master one weapon or adapt per mission. The battlefield does not
             reward comfort — only precision.
           </p>
-        </header>
+        </Reveal>
 
         <div className="weapons-showcase">
           <div className="weapons-grid">
@@ -91,13 +112,14 @@ export default function WeaponsSection() {
                 weapon={weapon}
                 active={selected === i}
                 onSelect={() => setSelected(i)}
+                index={i}
               />
             ))}
           </div>
           <WeaponDetail weapon={WEAPONS[selected]} />
         </div>
 
-        <div className="weapons-modular">
+        <Reveal className="weapons-modular" childSelector=".weapons-modular-list li" stagger={0.08}>
           <h3 className="weapons-modular-title">MODULAR FRAMEWORK</h3>
           <p className="weapons-modular-desc">
             Each platform shares a universal coupling system. Barrels, grips,
@@ -123,7 +145,7 @@ export default function WeaponsSection() {
               <span>BUILD COMBOS</span>
             </li>
           </ul>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
