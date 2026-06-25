@@ -239,6 +239,21 @@ body {
   justify-content: center;
   padding: 40px 24px 100px 16px;
   z-index: 10;
+  perspective: 800px;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.35em;
+  color: var(--red);
+  display: block;
+  margin-bottom: 20px;
+}
+
+.hero-title--3d .title-line {
+  display: block;
+  transform-style: preserve-3d;
 }
 
 .hero-title {
@@ -328,6 +343,16 @@ body {
   align-items: flex-end;
   justify-content: flex-end;
   overflow: hidden;
+  position: relative;
+}
+
+.hero-operative-glow {
+  position: absolute;
+  inset: 10% 0 5% 20%;
+  background: radial-gradient(ellipse at center, rgba(255, 26, 26, 0.14) 0%, transparent 65%);
+  filter: blur(24px);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .hero-operative {
@@ -1430,6 +1455,47 @@ body {
 .weapon-equip {
   width: 100%;
   justify-content: center;
+}
+
+.header--scrolled {
+  background: rgba(5, 5, 5, 0.92) !important;
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 26, 26, 0.12);
+}
+
+.cursor-glow {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+}
+
+.section-nav .dot {
+  position: relative;
+  overflow: visible;
+}
+
+.dot-pulse {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1px solid var(--red);
+  box-shadow: 0 0 12px var(--red-glow);
+  pointer-events: none;
+}
+
+.modes-grid-floor {
+  background-position: 0 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .cursor-glow { display: none; }
 }
 
 /* ===== RESPONSIVE ===== */
