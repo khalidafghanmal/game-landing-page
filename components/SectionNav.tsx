@@ -1,23 +1,26 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useMotion } from "./motion/MotionProvider";
 
 const SECTIONS = [
-  { id: "home", label: "Home" },
-  { id: "modes", label: "Combat Protocols" },
-  { id: "weapons", label: "Arsenal Division" },
+  { id: "#home", label: "Home" },
+  { id: "#modes", label: "Combat Protocols" },
+  { id: "#weapons", label: "Arsenal Division" },
 ];
 
 const TOTAL_SLIDES = 5;
 
 export default function SectionNav() {
   const [current, setCurrent] = useState(0);
+  const { scrollTo } = useMotion();
 
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
 
     SECTIONS.forEach((section, index) => {
-      const el = document.getElementById(section.id);
+      const el = document.querySelector(section.id);
       if (!el) return;
 
       const observer = new IntersectionObserver(
@@ -35,9 +38,7 @@ export default function SectionNav() {
   }, []);
 
   function goTo(index: number) {
-    if (index < SECTIONS.length) {
-      document.getElementById(SECTIONS[index].id)?.scrollIntoView({ behavior: "smooth" });
-    }
+    if (index < SECTIONS.length) scrollTo(SECTIONS[index].id);
   }
 
   return (
@@ -58,10 +59,26 @@ export default function SectionNav() {
             }
             onClick={() => goTo(i)}
             disabled={i >= SECTIONS.length}
-          />
+          >
+            {i === current && (
+              <motion.span
+                className="dot-pulse"
+                layoutId="section-dot"
+                transition={{ type: "spring", stiffness: 400, damping: 30 }}
+              />
+            )}
+          </button>
         ))}
       </div>
-      <span className="slide-num">{String(current + 1).padStart(2, "0")}</span>
+      <motion.span
+        className="slide-num"
+        key={current}
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+      >
+        {String(current + 1).padStart(2, "0")}
+      </motion.span>
       <span className="slide-sep">/</span>
       <span className="slide-total">{String(TOTAL_SLIDES).padStart(2, "0")}</span>
     </aside>
