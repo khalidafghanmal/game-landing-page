@@ -205,82 +205,10 @@ All motion respects **`prefers-reduced-motion`** for accessibility.
 
 ---
 
-## Deployment
 
-### Vercel (recommended)
 
-1. Push the repo to GitHub
-2. Import the project at [vercel.com/new](https://vercel.com/new)
-3. Deploy — zero config for Next.js
 
-### Other platforms
 
-Works on **Netlify**, **Cloudflare Pages**, **Railway**, and any Node.js host that supports Next.js.
-
-After deploy, update the **Live Demo** link at the top of this README.
-
----
-
-## Screenshots
-
-> Add GIFs or PNGs here after capture — strong visuals drive GitHub stars.
-
-| Hero | Combat Modes | Weapons |
-|------|--------------|---------|
-| `./docs/hero.png` | `./docs/modes.png` | `./docs/weapons.png` |
-
-**Tip:** Record a 10–15s screen capture as `demo.gif` and place it above the fold for best engagement.
-
----
-
-## SEO & GitHub Topics
-
-Use these **GitHub repository topics** for discoverability:
-
-```
-nextjs, react, typescript, gsap, framer-motion, lenis,
-game-landing-page, game-website, sci-fi-ui, tactical-ui,
-hud-interface, gaming-website, landing-page-template,
-frontend, web-animation, portfolio-project
-```
-
-**Suggested repo description:**
-
-> Cinematic tactical sci-fi game landing page — Next.js, GSAP, Framer Motion, Lenis smooth scroll, HUD UI, weapons showcase & combat modes.
-
-**Suggested keywords (for README & meta):**
-
-game landing page, sci-fi game website, tactical HUD UI, Next.js game template, GSAP scroll animation, Framer Motion landing page, weapons showcase UI, combat modes section, dark gaming website, indie game promo site
-
----
-
-## Use Cases
-
-- Indie game launch / pre-order page
-- AAA-style promo microsite
-- Front-end portfolio showcase
-- UI/UX case study for gaming interfaces
-- Starter template for FPS / tactical shooter marketing sites
-
----
-
-## Contributing
-
-Contributions, issues, and feature requests are welcome.
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes
-4. Push to the branch
-5. Open a Pull Request
-
----
-
-## License
-
-This project is open source. Add your preferred license (MIT recommended for templates).
-
----
 
 <p align="center">
   Built with precision for developers who ship <strong>game experiences</strong> that look as good as they play.
