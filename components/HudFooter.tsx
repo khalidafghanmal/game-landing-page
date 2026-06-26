@@ -109,17 +109,6 @@ export default function HudFooter() {
         </div>
       </div>
 
-      <div className="scroll-indicator">
-        <span className="scroll-label">SCROLL</span>
-        <div className="scroll-mouse" aria-hidden="true">
-          <div className="scroll-wheel" />
-        </div>
-        <div className="scroll-arrows" aria-hidden="true">
-          <span>&#9660;</span>
-          <span>&#9660;</span>
-        </div>
-      </div>
-
       <div className="hud-sidebar">
         <div className="hud-widget hud-widget--threat">
           <div className="threat-icon" aria-hidden="true">

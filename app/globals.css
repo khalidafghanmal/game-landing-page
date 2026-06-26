@@ -379,7 +379,7 @@ body {
   width: 100%;
   z-index: 150;
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: 1fr auto;
   align-items: end;
   padding: 0 var(--page-gutter) 24px;
   padding-left: calc(var(--page-gutter) + 48px);
@@ -486,60 +486,6 @@ body {
 
 .stat-label { color: var(--gray); letter-spacing: 0.05em; }
 .stat-value { color: #fff; font-weight: 700; }
-
-/* Scroll indicator */
-.scroll-indicator {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  padding-bottom: 4px;
-}
-
-.scroll-label {
-  font-family: var(--font-mono);
-  font-size: 0.55rem;
-  letter-spacing: 0.25em;
-  color: var(--gray);
-}
-
-.scroll-mouse {
-  width: 18px;
-  height: 28px;
-  border: 1px solid var(--red);
-  border-radius: 9px;
-  display: flex;
-  justify-content: center;
-  padding-top: 5px;
-}
-
-.scroll-wheel {
-  width: 3px;
-  height: 6px;
-  background: var(--red);
-  border-radius: 2px;
-  animation: scrollWheel 2s ease-in-out infinite;
-}
-
-@keyframes scrollWheel {
-  0%, 100% { transform: translateY(0); opacity: 1; }
-  50% { transform: translateY(6px); opacity: 0.3; }
-}
-
-.scroll-arrows {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: var(--red);
-  font-size: 0.5rem;
-  line-height: 0.7;
-  animation: scrollBounce 2s ease-in-out infinite;
-}
-
-@keyframes scrollBounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(4px); }
-}
 
 /* Right sidebar widgets */
 .hud-sidebar {
@@ -2842,7 +2788,6 @@ body {
     grid-template-columns: 1fr;
   }
   .hud-panel--feed { max-width: 100%; }
-  .scroll-indicator { display: none; }
   .modes-section { padding: 80px var(--page-gutter) 60px; padding-left: 48px; }
   .weapon-chip { grid-template-columns: 1fr; gap: 8px; }
   .weapon-chip-stats { text-align: left; flex-direction: row; gap: 12px; }
