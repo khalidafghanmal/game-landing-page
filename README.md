@@ -26,7 +26,6 @@
   <a href="#project-structure">Structure</a> •
   <a href="#animations">Animations</a> •
   <a href="#deployment">Deploy</a> •
-  <a href="#seo--github-topics">SEO Topics</a>
 </p>
 
 ---
