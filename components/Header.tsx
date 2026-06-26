@@ -8,8 +8,8 @@ const NAV_LINKS = [
   { href: "#home", label: "HOME", active: true },
   { href: "#modes", label: "MODES" },
   { href: "#weapons", label: "WEAPONS" },
-  { href: "#", label: "MEDIA" },
-  { href: "#", label: "COMMUNITY" },
+  { href: "#media", label: "MEDIA" },
+  { href: "#community", label: "COMMUNITY" },
 ];
 
 export default function Header() {

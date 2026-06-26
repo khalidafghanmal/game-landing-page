@@ -191,15 +191,3 @@ All motion respects **`prefers-reduced-motion`** for accessibility.
 
 ---
 
-## Customization
-
-| What to change | Where |
-|----------------|-------|
-| Page title & meta description | `app/layout.tsx` |
-| Hero headline & copy | `components/Hero.tsx` |
-| Game modes | `components/ModesSection.tsx`, `ModeCard.tsx` |
-| Weapons data | `components/WeaponsSection.tsx`, `WeaponCard.tsx` |
-| Colors & HUD tokens | `app/globals.css` (CSS variables) |
-| Hero image | Replace `public/operative.png` |
-| Fonts | `app/layout.tsx` |
-

@@ -8,9 +8,12 @@ const SECTIONS = [
   { id: "#home", label: "Home" },
   { id: "#modes", label: "Combat Protocols" },
   { id: "#weapons", label: "Arsenal Division" },
+  { id: "#operatives", label: "Combat Units" },
+  { id: "#media", label: "Signal Feed" },
+  { id: "#community", label: "Enlistment" },
 ];
 
-const TOTAL_SLIDES = 5;
+const TOTAL_SLIDES = 6;
 
 export default function SectionNav() {
   const [current, setCurrent] = useState(0);

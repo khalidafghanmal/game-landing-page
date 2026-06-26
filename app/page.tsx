@@ -1,6 +1,9 @@
+import DeploySection from "@/components/DeploySection";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import MediaSection from "@/components/MediaSection";
 import ModesSection from "@/components/ModesSection";
+import OperativesSection from "@/components/OperativesSection";
 import Overlays from "@/components/Overlays";
 import SectionNav from "@/components/SectionNav";
 import WeaponsSection from "@/components/WeaponsSection";
@@ -17,6 +20,9 @@ export default function Home() {
         <Hero />
         <ModesSection />
         <WeaponsSection />
+        <OperativesSection />
+        <MediaSection />
+        <DeploySection />
       </main>
     </>
   );
