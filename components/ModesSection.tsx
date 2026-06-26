@@ -54,14 +54,61 @@ const WEAPONS = [
   { code: "PL-44", type: "PLASMA LAUNCHER", dmg: "98", rof: "90", range: "LONG" },
 ];
 
+const HEADER_META = [
+  { label: "THEATERS", value: "03", detail: "ACTIVE OPS" },
+  { label: "RANKED", value: "LIVE", detail: "SEASON 1" },
+  { label: "ENEMY AI", value: "ADAPTIVE", detail: "DYNAMIC" },
+];
+
 export default function ModesSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
+    const header = headerRef.current;
     if (!section) return;
 
     const ctx = gsap.context(() => {
+      if (header) {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: header,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+          defaults: { ease: "power4.out" },
+        });
+
+        tl.from(".modes-eyebrow", { opacity: 0, letterSpacing: "0.55em", duration: 0.9 })
+          .from(
+            ".modes-title-line--choose",
+            {
+              yPercent: 110,
+              opacity: 0,
+              rotateX: -24,
+              transformOrigin: "50% 100%",
+              duration: 1,
+            },
+            "-=0.5"
+          )
+          .from(
+            ".modes-title-line--war",
+            {
+              yPercent: 120,
+              opacity: 0,
+              rotateX: -28,
+              transformOrigin: "50% 100%",
+              duration: 1.1,
+            },
+            "-=0.65"
+          )
+          .from(".modes-header-rule", { scaleX: 0, opacity: 0, duration: 0.9, ease: "power3.inOut" }, "-=0.5")
+          .from(".modes-lead", { y: 28, opacity: 0, duration: 0.8 }, "-=0.45")
+          .from(".modes-desc", { y: 20, opacity: 0, duration: 0.7 }, "-=0.55")
+          .from(".modes-meta-card", { y: 24, opacity: 0, stagger: 0.1, duration: 0.65 }, "-=0.5");
+      }
+
       gsap.to(".modes-grid-floor", {
         backgroundPosition: "0px 120px",
         ease: "none",
@@ -100,17 +147,52 @@ export default function ModesSection() {
       </div>
 
       <div className="modes-inner">
-        <Reveal className="modes-header">
-          <span className="modes-eyebrow">02 / VOID PROTOCOLS</span>
-          <h2 className="modes-title">
-            <span>CHOOSE</span>
-            <span className="modes-title-accent">YOUR WAR</span>
-          </h2>
-          <p className="modes-desc">
-            Three theaters of operation. Dynamic objectives. Adaptive enemy AI.
-            Deploy where the front line demands you most.
-          </p>
-        </Reveal>
+        <div className="modes-header" ref={headerRef}>
+          <div className="modes-header-band">
+            <div className="modes-header-main">
+              <span className="modes-eyebrow">02 / COMBAT PROTOCOLS</span>
+
+              <div className="modes-title-wrap">
+                <span className="modes-title-watermark" aria-hidden="true">
+                  WAR
+                </span>
+                <h2 className="modes-title modes-title--3d">
+                  <span className="modes-title-line modes-title-line--choose">CHOOSE</span>
+                  <span className="modes-title-line modes-title-line--war">
+                    <span className="modes-title-accent">YOUR WAR</span>
+                  </span>
+                </h2>
+              </div>
+
+              <div className="modes-header-rule" aria-hidden="true">
+                <span className="modes-header-rule-line" />
+                <span className="modes-header-rule-dot" />
+              </div>
+
+              <div className="modes-header-copy">
+                <p className="modes-lead">
+                  Three theaters of operation. Dynamic objectives. Adaptive enemy AI.
+                  <strong> Deploy where the front line demands you most.</strong>
+                </p>
+                <p className="modes-desc">
+                  Every mode rewrites the rules of engagement — solo extinction runs,
+                  coordinated strike teams, and full-scale territory wars across
+                  shattered megastructures.
+                </p>
+              </div>
+            </div>
+
+            <div className="modes-header-meta">
+              {HEADER_META.map((item) => (
+                <div key={item.label} className="modes-meta-card">
+                  <span className="modes-meta-label">{item.label}</span>
+                  <span className="modes-meta-value">{item.value}</span>
+                  <span className="modes-meta-detail">{item.detail}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
 
         <div className="modes-layout">
           <div className="modes-grid">
