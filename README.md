@@ -32,7 +32,6 @@
 
 ## Live Demo
 
-> Replace the link below after deploying to Vercel, Netlify, or your host.
 
 **[View Live Demo](https://game-landing-page-sable.vercel.app/)** — experience the full tactical landing page in your browser.
 
