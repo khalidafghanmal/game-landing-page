@@ -34,7 +34,7 @@
 
 > Replace the link below after deploying to Vercel, Netlify, or your host.
 
-**[View Live Demo](https://your-demo-url.vercel.app)** — experience the full tactical landing page in your browser.
+**[View Live Demo](https://game-landing-page-sable.vercel.app/)** — experience the full tactical landing page in your browser.
 
 ---
 
@@ -110,8 +110,8 @@ Navigation dots prepared for future sections (rankings, lore, download CTA, etc.
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
-cd YOUR_REPO_NAME
+git clone https://github.com/khalidafghanmal/game-landing-page
+cd game-landing-page
 
 # Install dependencies
 npm install
