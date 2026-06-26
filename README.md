@@ -33,7 +33,7 @@
 ## Live Demo
 
 
-**[View Live Demo](https://game-landing-page-sable.vercel.app/)** — experience the full tactical landing page in your browser.
+**[View Live Demo](https://game-landing-page-ruoq.vercel.app/)** — experience the full tactical landing page in your browser.
 
 ---
 
