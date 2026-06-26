@@ -203,17 +203,3 @@ All motion respects **`prefers-reduced-motion`** for accessibility.
 | Hero image | Replace `public/operative.png` |
 | Fonts | `app/layout.tsx` |
 
----
-
-
-
-
-
-
-<p align="center">
-  Built with precision for developers who ship <strong>game experiences</strong> that look as good as they play.
-</p>
-
-<p align="center">
-  If this project helped you, consider giving it a star — it helps others discover tactical game UI templates on GitHub.
-</p>
